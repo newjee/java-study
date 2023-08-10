@@ -35,7 +35,7 @@ public class Main {
 //		drawShape(triangle); 인터페이스 구현
 		draw(triangle);
 		
-		C아아리마얼미ㅏㅓ이ㅏㅓ라ㅓ이ㅏ러미ㅏㅓ나ㅓ라안ㅕㅇ핫ㅔ요₩₩₩????ㅇㅇ여야리ㅓ어1ㄹ1아1ㄹ1ㅏㅂㅂㅂㅂㅁㅂㅂㅁㅂㅁㅃㅁㅂㅁㅁㅂㅁㅂㅂㅁㅂ롤어란\\\\\	ircle circle = new Circle();
+		Circle circle = new Circle();
 //		drawShape(circle); 인터페이스 구현
 		draw(circle);
 
