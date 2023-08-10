@@ -15,9 +15,9 @@ public class ArrayUtilTest {
 		
 		int[] a1 = ArrayUtil.doubleToInt(new double[] {10.0, 11.0, 12.0});
 		System.out.println(Arrays.toString(a1));
-		
-		int[] a2 = ArrayUtil.concat(new int[] {1,2,3}, new int[] {4,5,6});
-		System.out.println(Arrays.toString(a2));
+//		
+//		int[] a2 = ArrayUtil.concat(new int[] {1,2,3}, new int[] {4,5,6});
+//		System.out.println(Arrays.toString(a2));
 
 		
 	}

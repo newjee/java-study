@@ -21,10 +21,10 @@ public class ArrayUtil {
 		}
 		return a;
 	}
-
-	public static int[] concat(int[] s1, int[] s2) {
-//		for (int i = 0)
-//		return null;
-	}
+//
+//	public static int[] concat(int[] s1, int[] s2) {
+////		for (int i = 0)
+////		return null;
+//	}
 
 }
