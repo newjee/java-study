@@ -23,8 +23,8 @@ public class ArrayUtil {
 	}
 
 	public static int[] concat(int[] s1, int[] s2) {
-		for (int i = 0)
-		return null;
+//		for (int i = 0)
+//		return null;
 	}
 
 }

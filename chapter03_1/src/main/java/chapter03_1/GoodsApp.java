@@ -5,6 +5,7 @@ public class GoodsApp {
 //		local변수 선언        생성자
 		Goods camera = new Goods();
 //		정보 은닉 O
+//		->
 		camera.setName("Sony");
 		camera.setPrice(100000);
 		camera.setCountStock(10);
@@ -25,6 +26,9 @@ public class GoodsApp {
 
 		int discountPrice  = camera.calDiscountPrice(0.5);
 		System.out.println(discountPrice);
+		
+		Goods tv = new Goods("TV", 400000, 10, 20);
+		tv.showInfo();
 		
 		
 		

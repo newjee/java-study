@@ -11,7 +11,7 @@ public class StaticMethod {
 	void f2() {
 //		같은 클래스의 클래스(static) 변수 접근에서는 클래스 이름 생략 가
 		m=20;
-		m=20
+		
 	}
 	
 	void f3() {
