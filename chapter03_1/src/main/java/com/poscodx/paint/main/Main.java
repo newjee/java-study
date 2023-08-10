@@ -1,4 +1,14 @@
-package paint;
+package com.poscodx.paint.main;
+
+import com.poscodx.paint.i.Drawable;
+import com.poscodx.paint.point.ColorPoint;
+import com.poscodx.paint.point.Point;
+import com.poscodx.paint.shape.Circle;
+import com.poscodx.paint.shape.Rect;
+import com.poscodx.paint.shape.Shape;
+import com.poscodx.paint.shape.Triangle;
+import com.poscodx.paint.text.GraphicText;
+
 
 public class Main {
 
@@ -42,6 +52,25 @@ public class Main {
 		draw(new GraphicText("Hello World!"));
 		// 라면은 있지만, 음식은 없다!
 //		new Shape();
+		
+		
+		// instance of //Test//pass
+		System.out.println(circle instanceof Circle);
+		System.out.println(circle instanceof Shape);
+		System.out.println(circle instanceof Object);
+		
+		// 연산자 우측항인 경우 인터페이스의 경우, 
+		// (hierachy x) 기능의 구현의 의미이므로 호출 가능
+		System.out.println(circle instanceof Drawable);
+		System.out.println(circle instanceof Runnable);
+		
+		// instanceof //Test//error 
+		// -> 연산자 우측항이 클래스인 경우, ref하고 있는 클래스 타입의 hierachy 상의 
+		// 하위, 상위만 instanceof 사용 가
+//		System.out.println(circle instanceof Rect);
+		
+		
+		
 	}
 
 	public static void draw(Drawable drawable) {
