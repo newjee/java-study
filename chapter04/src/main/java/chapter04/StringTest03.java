@@ -53,7 +53,7 @@ public class StringTest03 {
 		}
 		
 		String[] tokens2 = s6.split(" ");
-		System.out.println(tokens2);
+		//original
 		for (String s : tokens2) {
 			System.out.println(s);
 		}
