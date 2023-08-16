@@ -7,7 +7,7 @@ public class Goods2App {
 		Goods2 goods = new Goods2();
 		
 //		public
-		goods.name = "camera";
+		goods.name = "camera"; 
 ////		protected : 같은 패키지 내
 //		goods.price = 8000000;
 ////		default : 같은 패키지 내
