@@ -25,10 +25,8 @@ public class MyStack {
 	}
 
 	public String pop() throws MyStackException {
-		if (top == 0) {
+		if (top == 0)
 			throw new MyStackException();
-
-		}
 		top--;
 		return buffer[top];
 
