@@ -11,7 +11,7 @@ import java.net.Socket;
 import java.net.SocketException;
 
 public class EchoServer {
-	public static final int PORT = 8881;
+	public static final int PORT = 8882;
 	
 	public static void main(String[] args) {
 		ServerSocket serverSocket =null;
@@ -29,57 +29,63 @@ public class EchoServer {
 			serverSocket.bind(new InetSocketAddress("0.0.0.0",PORT ),10);
 			log("starts... [port:"+ PORT +"]");
 			// 3. accept 
-			socket = serverSocket.accept(); // blocking
+//			socket = serverSocket.accept(); // blocking
 			
 			log("연결되었습니다.");
 			// -> blocking 풀어주려면 client에서 connect
-			
-			
-			InetSocketAddress remoteInetSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
-			String remoteHostAddress = remoteInetSocketAddress.getAddress().getHostAddress();
-			int remotePort = remoteInetSocketAddress.getPort();
-			log("connected by client[" + remoteHostAddress + ":"+ remotePort + "]" );
-		
-			//4. IOStream 받아오기
-			
-			PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true); // 오토 flush -> 통신할때는 true/ 파일은 false...
-			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
-			
-//			pw.print("안녕 ");
 			while(true) {
-				String data = br.readLine();
-				if(data == null) {
-					//클라가 정상적으로 종료 (close 호출)
-					log("closed by c" );
-					break;
-				}
+				Socket socket = serverSocket.accept();
+				try {
+					InetSocketAddress remoteInetSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
+					String remoteHostAddress = remoteInetSocketAddress.getAddress().getHostAddress();
+					int remotePort = remoteInetSocketAddress.getPort();
+					log("connected by client[" + remoteHostAddress + ":"+ remotePort + "]" );
 				
-				log(" receivced : "+ data);
-				
-				//6. 데이터 쓰기
-				pw.println(data);
-			}
-	    } catch (SocketException e) {
-            log("[suddenly closed by client : " + e);
-        } catch (IOException e) {
-        	log(" error : " + e);
-        } finally {
-        	 try {
-                 if (socket != null && !socket.isClosed()) {
-                     socket.close();
-                 }
-             } catch (IOException e) {
-                 e.printStackTrace();
-             }
+					//4. IOStream 받아오기
+					
+					PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true); // 오토 flush -> 통신할때는 true/ 파일은 false...
+					BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
+					
+//					pw.print("안녕 ");
+					while(true) {
+						String data = br.readLine();
+						if(data == null) {
+							//클라가 정상적으로 종료 (close 호출)
+							log("closed by c" );
+							break;
+						}
+						
+						log(" receivced : "+ data);
+						
+						//6. 데이터 쓰기
+						pw.println(data);
+					}
+			    } catch (SocketException e) {
+		            log("[suddenly closed by client : " + e);
+		        } catch (IOException e) {
+		        	log(" error : " + e);
+		        } finally {
+		        	 try {
+		                 if (socket != null && !socket.isClosed()) {
+		                     socket.close();
+		                 }
+		               
+		             } catch (IOException e) {
+		                 e.printStackTrace();
+		             }
 
-             try {
-                 if (serverSocket != null && !serverSocket.isClosed()) {
-                     serverSocket.close();
-                 }
-             } catch (IOException e) {
-                 e.printStackTrace();
-             }
-         }
+		             try {
+		                 if (serverSocket != null && !serverSocket.isClosed()) {
+		                     serverSocket.close();
+		                 }
+		             } catch (IOException e) {
+		                 e.printStackTrace();
+		             }
+		         }
+			
+			
+			
+
 		
 	}
 	
