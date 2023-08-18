@@ -1,3 +1,4 @@
+
 package test;
 
 import java.net.InetAddress;
@@ -17,7 +18,8 @@ public class LocalHost {
 			
 			byte[] IpAddresses = inetAddress.getAddress();
 			for(byte IpAddress : IpAddresses) {
-				System.out.println(IpAddress&0x000000ff);
+//				System.out.println(IpAddress&0x000000ff); // unsigned 처리(java엔 없음)
+				System.out.println(IpAddress);
 			}
 			
 		} catch (UnknownHostException e) {
