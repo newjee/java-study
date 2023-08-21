@@ -2,7 +2,7 @@ package chat;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Writer;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -18,17 +18,22 @@ import java.util.List;
 //br -> readline
 //pw -> 
 public class ChatServer {
-	public static final int PORT = 9993;
+	public static final int PORT = 9999;
 
 	public static void main(String[] args) {
 		ServerSocket serverSocket = null;
 		
 		try {
 			//1. 서버 소켓 객체 생성
-			serverSocket = new ServerSocket(PORT);
+			serverSocket = new ServerSocket();
+			//2. 바인딩
+			String hostAddress = InetAddress.getLocalHost().getHostAddress();
+			hostAddress = "0.0.0.0";
 
+			serverSocket.bind(new InetSocketAddress(hostAddress, PORT));
+			log("연결 기다림" +hostAddress+ ":"+PORT);
 			//3. 공유 객체 리스트 생성
-			List<Writer> listWriters = Collections.synchronizedList(new ArrayList<>());
+			List<PrintWriter> listWriters = Collections.synchronizedList(new ArrayList<>());
 
 			while (true) {
 				//4. 클라이언트 접속
@@ -52,7 +57,7 @@ public class ChatServer {
 
 	
 	protected static void log(String message) {
-		System.out.println("[LOG] : "+message );
+		System.out.println("[Server LOG] : "+message );
 	}
 }
 

@@ -2,28 +2,47 @@ package chat;
 //nextline blocking
 //쓰는 쓰레두 
 
-import echo.EchoClient;
-
 import java.io.BufferedReader;
-import java.io.InputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.net.SocketException;
 
 public class ChatClientThread extends Thread{
-    BufferedReader br;
+    private  Socket socket;
+    private  BufferedReader br;
 
-    public ChatClientThread(BufferedReader br) {
-        this.br = br;
+    public ChatClientThread(Socket socket) {
+        this.socket = socket;
     }
-	@Override
+
+    @Override
 	public void run() {
         try {
-            String line = null;
+            String line;
+            br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
 
-            while ((line = br.readLine()) != null) {
+            while (true) {
+                line = br.readLine();
+                if(line == null){
+                    break;
+                }
                 System.out.println(line);
             }
 
+        } catch (SocketException e) {
+            ChatClient.log("채팅방에서 나왔습니다.!");
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (socket != null && !socket.isClosed()) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    ChatClient.log("error" +e);
+
+                }
+            }
         }
 	}
 }
