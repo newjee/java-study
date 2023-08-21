@@ -1,10 +1,15 @@
 package chat;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 // 귓속말 : pw1이 둘리인지.... Lsit.<cheat>... 방장이냐....
 //JOIN MSG QUIT
@@ -13,7 +18,7 @@ import java.net.Socket;
 //br -> readline
 //pw -> 
 public class ChatServer {
-	public static final int PORT = 9999;
+	public static final int PORT = 9993;
 
 	public static void main(String[] args) {
 		ServerSocket serverSocket = null;
@@ -21,23 +26,32 @@ public class ChatServer {
 		try {
 			//1. 서버 소켓 객체 생성
 			serverSocket = new ServerSocket(PORT);
-			
-			//2. 바인딩
-			String hostAddress = InetAddress.getLocalHost().getHostAddress();
-			serverSocket.bind(new InetSocketAddress(hostAddress, PORT));
-			log("연결 기다림" + hostAddress + ":" + PORT);
-			Socket socket = serverSocket.accept();
+
+			//3. 공유 객체 리스트 생성
+			List<Writer> listWriters = Collections.synchronizedList(new ArrayList<>());
+
+			while (true) {
+				//4. 클라이언트 접속
+				Socket socket = serverSocket.accept();
+				log("접속" + socket);
+
+				ChatServerThread chatServerThread = new ChatServerThread(socket, listWriters);
+				chatServerThread.start();
+			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
-		
-		//2.  바인딩
+
 	}
+
 	
 	
 
 	
-	private static void log(String message) {
+	protected static void log(String message) {
 		System.out.println("[LOG] : "+message );
 	}
 }
