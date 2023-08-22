@@ -16,7 +16,8 @@ import java.util.List;
 //base 64  space를 de-coding
 
 //br -> readline
-//pw -> 
+//pw ->
+//닉네임 :
 public class ChatServer {
 	public static final int PORT = 9999;
 
@@ -26,6 +27,10 @@ public class ChatServer {
 		try {
 			//1. 서버 소켓 객체 생성
 			serverSocket = new ServerSocket();
+
+			//1-1. fin-wait -> time_wait: 소스 할당
+			serverSocket.setReuseAddress(true);
+
 			//2. 바인딩
 			String hostAddress = InetAddress.getLocalHost().getHostAddress();
 			hostAddress = "0.0.0.0";
