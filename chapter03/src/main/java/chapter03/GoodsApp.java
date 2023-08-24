@@ -1,4 +1,4 @@
-package chapter03_1;
+package chapter03;
 
 public class GoodsApp {
 	public static void main(String[] args) {

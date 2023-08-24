@@ -1,4 +1,4 @@
-package chapter03_1;
+package chapter03;
 
 public class Goods {
 	public static int countOfGoods = 0;

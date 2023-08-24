@@ -1,4 +1,4 @@
-package chapter03_1;
+package chapter03;
 
 public class SwapTest01 {
 

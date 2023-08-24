@@ -1,6 +1,4 @@
-package chapter03_1;
-
-import java.util.Arrays;
+package chapter03;
 
 public class Song {
 	private String title;

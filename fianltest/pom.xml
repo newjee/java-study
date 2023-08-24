@@ -8,11 +8,5 @@
   <artifactId>fianltest</artifactId>
   
   <build><finalName>finaltest</finalName></build>
-  <dependencies>
-  	<dependency>
-  		<groupId>com.poscodx</groupId>
-  		<artifactId>chapter03_1</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
-  </dependencies>
+
 </project>
