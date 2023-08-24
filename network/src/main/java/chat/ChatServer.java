@@ -2,7 +2,6 @@ package chat;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -14,10 +13,7 @@ import java.util.List;
 // 귓속말 : pw1이 둘리인지.... Lsit.<cheat>... 방장이냐....
 //JOIN MSG QUIT
 //base 64  space를 de-coding
-
-//br -> readline
-//pw ->
-//닉네임 :
+//닉ㄴ네임 바꾸기
 public class ChatServer {
 	public static final int PORT = 9999;
 
@@ -33,7 +29,8 @@ public class ChatServer {
 
 			//2. 바인딩
 			String hostAddress = InetAddress.getLocalHost().getHostAddress();
-			hostAddress = "0.0.0.0";
+
+//			String hostAddress = "192.168.0.148";
 
 			serverSocket.bind(new InetSocketAddress(hostAddress, PORT));
 			log("연결 기다림" +hostAddress+ ":"+PORT);

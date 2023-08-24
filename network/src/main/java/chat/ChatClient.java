@@ -40,7 +40,7 @@ public class ChatClient {
 
 			String ack = br.readLine();
 			if ("JOIN:OK".equals(ack)) {
-				System.out.println(nickname + "님이 입장하였습니다. 즐거운 채팅 되세요");
+				System.out.println(nickname + "님이 입장하였습니다. 즐거운 채팅 되세요^^");
 			}
 
 			//6. 만든 소켓을 쓰레드에 보내줌

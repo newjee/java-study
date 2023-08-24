@@ -1,5 +1,7 @@
 package chat;
 
+import chatgui.ChatWindow;
+
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
@@ -15,6 +17,7 @@ public class ChatServerThread extends Thread {
     private Socket socket;
 
     List<PrintWriter> listWriters;
+
 
     // 생성자
     public ChatServerThread(Socket socket, List<PrintWriter> listWriters) throws Exception {
@@ -48,7 +51,7 @@ public class ChatServerThread extends Thread {
                 } else if ("MSG".equals(tokens[0])) {
                     doMsg(tokens[1]);
                 } else if ("QUIT".equals(tokens[0])) {
-//                    doQuit(pw);
+                    doQuit(pw);
                 } else {
                     log("에러:알 수 없는 요청(" + tokens[0] + ")");
                 }
@@ -108,7 +111,7 @@ public class ChatServerThread extends Thread {
     private void doQuit(PrintWriter writer) {
         removeWriter(writer);
 
-        String data = nickname + "님이 퇴장했습니다 ㅠㅠ1";
+        String data = nickname + "님이 퇴장했습니다 ㅠㅠ";
         broadcast(data);
     }
 
@@ -123,7 +126,6 @@ public class ChatServerThread extends Thread {
     private void broadcast(String data) {
         synchronized (listWriters) {
             for (Writer writer : listWriters) {
-//
                 PrintWriter printWriter = (PrintWriter) writer;
                 printWriter.println(data);
             }
